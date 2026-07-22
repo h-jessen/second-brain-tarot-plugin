@@ -6,7 +6,7 @@ const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models
 export const geminiProvider: LLMProvider = {
   id: "gemini",
   label: "Google (Gemini)",
-  defaultModel: "gemini-2.5-pro",
+  defaultModel: "gemini-3.5-flash",
 
   async complete({ apiKey, model, system, messages, maxTokens }: CompleteOptions): Promise<string> {
     // Gemini has no "assistant" role — the model's own turns are "model".
