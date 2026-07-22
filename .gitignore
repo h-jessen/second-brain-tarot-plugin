@@ -1,0 +1,9 @@
+node_modules/
+
+# Build artifacts — same convention as Obsidian's official sample plugin:
+# built by CI or by hand and attached to GitHub Releases, not committed.
+main.js
+*.js.map
+
+# OS cruft
+.DS_Store

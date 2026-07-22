@@ -1,0 +1,10 @@
+{
+  "id": "second-brain-tarot",
+  "name": "Second-Brain Tarot",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "A tarot reading drawn from a real, complete deck and interpreted fresh against your own vault's content — not a lookup table, not generic tarot copy.",
+  "author": "h-jessen",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}
