@@ -40,14 +40,13 @@ attentive reader listens to a client's actual situation rather than reciting a b
 Your API key is stored locally in this vault's plugin settings, in plain text — the
 same convention most Obsidian AI-integration plugins use. It is not encrypted.
 
-## Known limitations
+## Artwork
 
-- **Card art is incomplete.** 32 of 78 cards currently have bundled artwork (sourced
-  from Wikimedia Commons' public-domain Rider-Waite-Smith / *Pictorial Key to the
-  Tarot* scans); the rest render as a text-only card face until the remaining images
-  are sourced.
-- The bundled art's public-domain status hasn't had a final licensing double-check
-  before this release.
+All 78 cards use scans of the 1909 Pamela Colman Smith / Rider-Waite-Smith deck,
+sourced from Wikimedia Commons' *Pictorial Key to the Tarot* collection
+(`assets/cards/`). Public domain: the work's copyright term (life of the author plus
+70 years) has expired in its country of origin, and it was published before January
+1, 1931, placing it in the public domain in the United States as well.
 
 ## Development
 
