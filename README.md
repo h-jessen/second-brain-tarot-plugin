@@ -1,5 +1,7 @@
 # Second-Brain Tarot
 
+[Available in Obsidian's Community Plugins directory](https://obsidian.md/plugins?id=second-brain-tarot) — install directly from Settings → Community plugins → Browse, or search "Second-Brain Tarot".
+
 An Obsidian plugin that draws a real, complete 78-card tarot deck and interprets it
 fresh against your own vault's content — not generic tarot-book copy, not a fixed
 lookup table.
@@ -29,8 +31,8 @@ attentive reader listens to a client's actual situation rather than reciting a b
 
 ## Setup
 
-1. Copy this folder into `<your-vault>/.obsidian/plugins/second-brain-tarot/`, or
-   install via the community plugin browser once listed.
+1. Install via Obsidian's Community Plugins browser (search "Second-Brain Tarot"), or
+   copy this folder manually into `<your-vault>/.obsidian/plugins/second-brain-tarot/`.
 2. Enable it in Obsidian's Community Plugins settings.
 3. Open Settings → Second-Brain Tarot, pick a provider, and paste in your own API key
    for that provider.
