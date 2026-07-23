@@ -22,7 +22,11 @@ export const openaiProvider: LLMProvider = {
       },
       body: JSON.stringify({
         model,
-        max_tokens: maxTokens,
+        // OpenAI's newer models (the gpt-5 family, reasoning models) reject
+        // the classic `max_tokens` param and require this instead — unlike
+        // Grok, which still accepts `max_tokens` on its OpenAI-compatible
+        // endpoint. Not actually interchangeable despite the shared shape.
+        max_completion_tokens: maxTokens,
         messages: chatMessages,
       }),
       throw: false,
