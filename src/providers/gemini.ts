@@ -1,5 +1,5 @@
 import { requestUrl } from "obsidian";
-import { CompleteOptions, LLMProvider } from "./types";
+import { CompleteOptions, GeminiResponse, LLMProvider } from "./types";
 
 const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
 
@@ -32,7 +32,8 @@ export const geminiProvider: LLMProvider = {
       throw new Error(`Gemini API error (${response.status}): ${response.text}`);
     }
 
-    const parts = response.json?.candidates?.[0]?.content?.parts ?? [];
-    return parts.map((p: any) => p.text ?? "").join("");
+    const body = response.json as GeminiResponse;
+    const parts = body.candidates?.[0]?.content?.parts ?? [];
+    return parts.map((p) => p.text ?? "").join("");
   },
 };

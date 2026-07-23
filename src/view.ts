@@ -14,8 +14,6 @@ const CARD_W = 96;
 const CARD_H = 138;
 const TABLE_W = 760;
 const TABLE_H = 560;
-const CENTER_X = TABLE_W / 2;
-const CENTER_Y = TABLE_H / 2;
 
 type LayoutPos = { dx: number; dy: number; rot: number };
 
@@ -160,7 +158,7 @@ export class TarotView extends ItemView {
       question,
       drawn,
       spread,
-      revealed: new Array(drawn.length).fill(false),
+      revealed: new Array<boolean>(drawn.length).fill(false),
       interpretation: null,
       interpreting: true,
       error: null,
@@ -187,9 +185,9 @@ export class TarotView extends ItemView {
         this.reading.followUpSystemPrompt = buildFollowUpSystemPrompt(vaultContext, drawn, spread, interpretation);
         this.renderReading();
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       if (this.reading) {
-        this.reading.error = e?.message ?? String(e);
+        this.reading.error = e instanceof Error ? e.message : String(e);
         this.reading.interpreting = false;
         this.renderReading();
       }
@@ -242,7 +240,7 @@ export class TarotView extends ItemView {
         // image element specifically (not cardEl), so it composes correctly
         // with the outer position rotation on the Celtic Cross "Challenge"
         // card instead of fighting it.
-        if (card.orientation === "reversed") img.style.transform = "rotate(180deg)";
+        if (card.orientation === "reversed") img.addClass("tarot-card-image-reversed");
         img.onerror = () => {
           // Artwork not present — fall back to a text-only card face rather
           // than a broken image icon. Left right-side-up even if reversed;
@@ -340,7 +338,7 @@ export class TarotView extends ItemView {
       const question = input.value.trim();
       if (!question || r.followUpPending) return;
       input.value = "";
-      this.askFollowUpQuestion(question);
+      void this.askFollowUpQuestion(question);
     };
     askBtn.onclick = submit;
     input.onkeydown = (e) => {
@@ -398,13 +396,14 @@ export class TarotView extends ItemView {
         question
       );
       r.followUpHistory.push({ role: "assistant", content: answer });
-    } catch (e: any) {
-      r.followUpHistory.push({ role: "assistant", content: `Error: ${e?.message ?? String(e)}` });
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : String(e);
+      r.followUpHistory.push({ role: "assistant", content: `Error: ${message}` });
     } finally {
       r.followUpPending = false;
       // Re-render the whole section (not just history) so the input/button
       // re-enable correctly.
-      const container = this.containerEl.querySelector(".tarot-followup") as HTMLElement | null;
+      const container = this.containerEl.querySelector<HTMLElement>(".tarot-followup");
       if (container) this.renderFollowUpSection(container);
     }
   }

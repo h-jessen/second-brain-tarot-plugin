@@ -1,18 +1,21 @@
 {
   "name": "second-brain-tarot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tarot reading drawn from a real deck and interpreted against your own vault.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-    "typecheck": "tsc -noEmit -skipLibCheck"
+    "typecheck": "tsc -noEmit -skipLibCheck",
+    "lint": "eslint ."
   },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "builtin-modules": "^3.3.0",
+    "@typescript-eslint/parser": "^8.65.0",
     "esbuild": "^0.19.11",
+    "eslint": "^9.39.5",
+    "eslint-plugin-obsidianmd": "^0.4.1",
     "obsidian": "^1.4.11",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"

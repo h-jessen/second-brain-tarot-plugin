@@ -78,6 +78,10 @@
   display: block;
 }
 
+.tarot-card-image-reversed {
+  transform: rotate(180deg);
+}
+
 .tarot-card-fallback {
   width: 100%;
   height: 100%;

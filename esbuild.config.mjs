@@ -1,6 +1,5 @@
 import esbuild from "esbuild";
 import process from "process";
-import builtins from "builtin-modules";
 
 const banner = `/*
 Second-Brain Tarot — built from src, do not edit main.js directly.
@@ -8,6 +7,8 @@ Second-Brain Tarot — built from src, do not edit main.js directly.
 
 const prod = process.argv[2] === "production";
 
+// No Node built-ins to externalize — this plugin only ever touches Obsidian's
+// own APIs and the fetch-like `requestUrl`, never `fs`/`path`/etc. directly.
 const context = await esbuild.context({
   banner: { js: banner },
   entryPoints: ["main.ts"],
@@ -26,7 +27,6 @@ const context = await esbuild.context({
     "@lezer/common",
     "@lezer/highlight",
     "@lezer/lr",
-    ...builtins,
   ],
   format: "cjs",
   target: "es2018",

@@ -1,5 +1,5 @@
 import { requestUrl } from "obsidian";
-import { CompleteOptions, LLMProvider } from "./types";
+import { CompleteOptions, LLMProvider, OpenAIStyleResponse } from "./types";
 
 const GROK_API_URL = "https://api.x.ai/v1/chat/completions";
 
@@ -33,6 +33,7 @@ export const grokProvider: LLMProvider = {
       throw new Error(`Grok API error (${response.status}): ${response.text}`);
     }
 
-    return response.json?.choices?.[0]?.message?.content ?? "";
+    const body = response.json as OpenAIStyleResponse;
+    return body.choices?.[0]?.message?.content ?? "";
   },
 };

@@ -1,5 +1,5 @@
 import { requestUrl } from "obsidian";
-import { CompleteOptions, LLMProvider } from "./types";
+import { AnthropicResponse, CompleteOptions, LLMProvider } from "./types";
 
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
 const ANTHROPIC_VERSION = "2023-06-01";
@@ -31,7 +31,8 @@ export const anthropicProvider: LLMProvider = {
       throw new Error(`Anthropic API error (${response.status}): ${response.text}`);
     }
 
-    const textBlock = (response.json?.content ?? []).find((b: any) => b.type === "text");
+    const body = response.json as AnthropicResponse;
+    const textBlock = (body.content ?? []).find((b) => b.type === "text");
     return textBlock?.text ?? "";
   },
 };

@@ -46,22 +46,41 @@ function buildCardsBlock(drawn: DrawnCard[], spread: SpreadPosition[]): string {
     .join("\n");
 }
 
+/** Validates the model's JSON response actually matches Interpretation
+ * before trusting it — JSON.parse only returns `unknown` here, deliberately,
+ * so a malformed response can never silently masquerade as well-typed data. */
+function isInterpretation(value: unknown): value is Interpretation {
+  if (typeof value !== "object" || value === null) return false;
+  const v = value as Record<string, unknown>;
+  return (
+    Array.isArray(v.cards) &&
+    v.cards.every(
+      (c): c is PositionReading =>
+        typeof c === "object" &&
+        c !== null &&
+        typeof (c as Record<string, unknown>).position === "string" &&
+        typeof (c as Record<string, unknown>).reading === "string"
+    ) &&
+    typeof v.synthesis === "string"
+  );
+}
+
 /** Same tolerant-parse strategy as the Python side: strip code fences, try a
  * clean parse, then fall back to extracting an embedded JSON object. */
 function parseInterpretation(raw: string): Interpretation | null {
   let cleaned = raw.trim();
   cleaned = cleaned.replace(/^```json\s*|\s*```$/gm, "").trim();
   try {
-    const result = JSON.parse(cleaned);
-    if (result && Array.isArray(result.cards)) return result;
+    const result: unknown = JSON.parse(cleaned);
+    if (isInterpretation(result)) return result;
   } catch {
     // fall through
   }
   const match = cleaned.match(/\{[\s\S]*"cards"[\s\S]*\}/);
   if (match) {
     try {
-      const result = JSON.parse(match[0]);
-      if (result && Array.isArray(result.cards)) return result;
+      const result: unknown = JSON.parse(match[0]);
+      if (isInterpretation(result)) return result;
     } catch {
       // fall through
     }

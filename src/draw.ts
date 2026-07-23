@@ -23,6 +23,6 @@ export function draw(deck: TarotCard[], n: number): DrawnCard[] {
   const chosen = shuffled(deck).slice(0, n);
   return chosen.map((card) => ({
     ...card,
-    orientation: (Math.random() < 0.5 ? "upright" : "reversed") as Orientation,
+    orientation: Math.random() < 0.5 ? "upright" : "reversed",
   }));
 }
