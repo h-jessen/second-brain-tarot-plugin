@@ -40,6 +40,19 @@ attentive reader listens to a client's actual situation rather than reciting a b
 Your API key is stored locally in this vault's plugin settings, in plain text — the
 same convention most Obsidian AI-integration plugins use. It is not encrypted.
 
+## Security & privacy
+
+- **API keys live in plain text in `data.json`.** Once installed, your key is stored,
+  unencrypted, at `<your-vault>/.obsidian/plugins/second-brain-tarot/data.json`. If
+  you track your vault (or `.obsidian/`) in git, add that path to your `.gitignore` —
+  don't commit it.
+- **Readings can surface genuinely sensitive material.** Interpretations are built
+  from real content in your vault — grief, relationship history, career doubts,
+  whatever a card's position theme happens to pull in. That's the point of the
+  plugin, but it means a saved reading note is not something to share or publish
+  without reviewing it first. Where a reading goes from there is on you; the plugin
+  doesn't restrict or filter what it saves.
+
 ## Artwork
 
 All 78 cards use scans of the 1909 Pamela Colman Smith / Rider-Waite-Smith deck,
