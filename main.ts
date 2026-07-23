@@ -40,6 +40,12 @@ export default class SecondBrainTarotPlugin extends Plugin {
     }
 
     this.settings = Object.assign({}, DEFAULT_SETTINGS, data);
+    // Merge per-provider maps key-by-key rather than taking the saved object
+    // wholesale — otherwise a provider added after a user's settings were
+    // first saved (e.g. openai, added after anthropic/gemini/grok) would be
+    // missing from apiKeys/models entirely instead of defaulting to "".
+    this.settings.apiKeys = { ...DEFAULT_SETTINGS.apiKeys, ...data.apiKeys };
+    this.settings.models = { ...DEFAULT_SETTINGS.models, ...data.models };
   }
 
   async saveSettings(): Promise<void> {

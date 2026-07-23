@@ -1,4 +1,4 @@
-export type ProviderId = "anthropic" | "gemini" | "grok";
+export type ProviderId = "anthropic" | "gemini" | "grok" | "openai";
 
 export interface ChatMessage {
   role: "user" | "assistant";

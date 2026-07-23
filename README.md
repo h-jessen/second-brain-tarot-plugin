@@ -23,9 +23,9 @@ attentive reader listens to a client's actual situation rather than reciting a b
 - Optional save-as-note — writes the reading (and any follow-up) directly into your
   vault with real `[[wikilinks]]`, either as a new note or appended into the
   currently-open one.
-- Bring your own API key. Choose Anthropic (Claude), Google (Gemini), or xAI (Grok) in
-  settings — nothing is proxied through any other server, requests go straight from
-  your machine to whichever provider you pick.
+- Bring your own API key. Choose Anthropic (Claude), Google (Gemini), xAI (Grok), or
+  OpenAI (GPT) in settings — nothing is proxied through any other server, requests go
+  straight from your machine to whichever provider you pick.
 
 ## Setup
 

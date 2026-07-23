@@ -17,11 +17,12 @@ export interface TarotSettings {
 
 export const DEFAULT_SETTINGS: TarotSettings = {
   provider: "anthropic",
-  apiKeys: { anthropic: "", gemini: "", grok: "" },
+  apiKeys: { anthropic: "", gemini: "", grok: "", openai: "" },
   models: {
     anthropic: PROVIDERS.anthropic.defaultModel,
     gemini: PROVIDERS.gemini.defaultModel,
     grok: PROVIDERS.grok.defaultModel,
+    openai: PROVIDERS.openai.defaultModel,
   },
   defaultSpread: "three_card",
   maxVaultChars: 40_000,
